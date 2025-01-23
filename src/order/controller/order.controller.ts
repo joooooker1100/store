@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
 import { OrderService } from '../service/order.service';
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
@@ -16,16 +24,33 @@ export class OrderController {
   }
 
   @Post()
-  async createOrder(@Body() orderData: { orderDate: string; customerId: number; orderStatusId: number }) {
-    await this.orderService.createOrder(orderData.orderDate, orderData.customerId, orderData.orderStatusId);
+  async createOrder(
+    @Body()
+    orderData: {
+      orderDate: string;
+      customerId: number;
+      orderStatusId: number;
+    },
+  ) {
+    await this.orderService.createOrder(
+      orderData.orderDate,
+      orderData.customerId,
+      orderData.orderStatusId,
+    );
   }
 
   @Put(':id')
   async updateOrder(
     @Param('id') id: number,
-    @Body() orderData: { orderDate: string; customerId: number; orderStatusId: number },
+    @Body()
+    orderData: { orderDate: string; customerId: number; orderStatusId: number },
   ) {
-    await this.orderService.updateOrder(id, orderData.orderDate, orderData.customerId, orderData.orderStatusId);
+    await this.orderService.updateOrder(
+      id,
+      orderData.orderDate,
+      orderData.customerId,
+      orderData.orderStatusId,
+    );
   }
 
   @Delete(':id')

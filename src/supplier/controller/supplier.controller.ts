@@ -1,7 +1,15 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+} from '@nestjs/common';
 import { SupplierService } from '../service/supplier.service';
 
-@Controller('supplier')
+@Controller('suppliers')
 export class SupplierController {
   constructor(private readonly supplierService: SupplierService) {}
 
@@ -16,16 +24,33 @@ export class SupplierController {
   }
 
   @Post()
-  async createSupplier(@Body() supplierData: { supplierName: string; phone: string; address: string }) {
-    await this.supplierService.createSupplier(supplierData.supplierName, supplierData.phone, supplierData.address);
+  async createSupplier(
+    @Body()
+    supplierData: {
+      supplierName: string;
+      phone: string;
+      address: string;
+    },
+  ) {
+    await this.supplierService.createSupplier(
+      supplierData.supplierName,
+      supplierData.phone,
+      supplierData.address,
+    );
   }
 
   @Put(':id')
   async updateSupplier(
     @Param('id') id: number,
-    @Body() supplierData: { supplierName: string; phone: string; address: string },
+    @Body()
+    supplierData: { supplierName: string; phone: string; address: string },
   ) {
-    await this.supplierService.updateSupplier(id, supplierData.supplierName, supplierData.phone, supplierData.address);
+    await this.supplierService.updateSupplier(
+      id,
+      supplierData.supplierName,
+      supplierData.phone,
+      supplierData.address,
+    );
   }
 
   @Delete(':id')
