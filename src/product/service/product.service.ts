@@ -18,10 +18,10 @@ export class ProductService {
     return rows[0];
   }
 
-  async createProduct(productName: string, price: number, stock: number, description: string, categoryId: number, employeeId: number): Promise<void> {
+  async createProduct(productName: string, price: number, stock: number, description: string, categoryId: number, userId: number): Promise<void> {
     await this.db.query(
-      'INSERT INTO Product (ProductName, Price, Stock, Description, CategoryID, EmployeeID) VALUES (?, ?, ?, ?, ?, ?)',
-      [productName, price, stock, description, categoryId, employeeId],
+      'INSERT INTO Product (ProductName, Price, Stock, Description, CategoryID, UserID) VALUES (?, ?, ?, ?, ?, ?)',
+      [productName, price, stock, description, categoryId, userId],
     );
   }
 

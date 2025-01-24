@@ -8,7 +8,7 @@ export class PaymentMethodService {
   async createPaymentMethod(name: string): Promise<number> {
     const [result] = await this.db.execute('INSERT INTO PaymentMethod (Name) VALUES (?)', [name]);
     return (result as any).insertId;
-  }
+  }n
 
   async findAll(): Promise<any[]> {
     const [rows]:any = await this.db.execute('SELECT * FROM PaymentMethod');
